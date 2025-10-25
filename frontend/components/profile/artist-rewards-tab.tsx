@@ -1,4 +1,4 @@
-import { Artist } from "@/types/artist";
+import { Artist } from "@/types";
 import { TabsContent } from "@radix-ui/react-tabs";
 import { BanknoteIcon } from "lucide-react";
 import { Card, CardContent } from "../ui/card";

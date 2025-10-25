@@ -1,7 +1,7 @@
-import { UserData } from "@/lib/types";
-import { SolanaWalletButton } from "./authentication/solana-wallet-button";
-import { Button } from "./ui/button";
+import { UserData } from "@/types";
 import { UserPlus } from "lucide-react";
+import { SolanaWalletButton } from "@/components/auth/solana-wallet-button";
+import { Button } from "@/components/ui/button";
 
 export function Header({
   userData,

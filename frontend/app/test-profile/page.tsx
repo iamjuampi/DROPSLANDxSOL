@@ -1,9 +1,7 @@
 "use client";
-
 import { useState } from "react";
-
 import { Button } from "@/components/ui/button";
-import UserProfile from "@/components/artist-profile/user-profile";
+import UserProfile from "@/components/profile/user-profile";
 import { useAuth } from "@/hooks/use-auth";
 
 export default function TestProfilePage() {

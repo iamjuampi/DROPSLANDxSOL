@@ -1,19 +1,19 @@
 "use client";
-import HomeView from "@/components/home/home-view";
+import HomeView from "@/components/feed/home-view";
 import SearchView from "@/components/search-view";
-import ActivityView from "@/components/home/activity-view";
-import ProfileView from "@/components/artist-profile/profile-view";
+import ActivityView from "@/components/feed/activity-view";
+import ProfileView from "@/components/profile/profile-view";
 import WalletView from "@/components/wallet/wallet-view";
 import ArtistDashboard from "@/components/artist-dashboard";
 import BuyView from "@/components/wallet/buy-view";
 import SendView from "@/components/send-view";
 import ReceiveView from "@/components/wallet/receive-view";
-import ArtistProfile from "@/components/artist-profile/artist-profile";
-import { useAuth } from "@/hooks/use-auth";
-import { Header } from "./header";
-import { TabBar } from "./tab-bar";
+import { Header } from "@/components/layout/header";
+import { TabBar } from "@/components/layout/tab-bar";
 import { useNavigation, useViewRenderer } from "@/hooks/use-navigation";
 import type { useNavigation as useNavigationType } from "@/hooks/use-navigation";
+import { useAuth } from "@/hooks/use-auth";
+import ArtistProfile from "@/components/profile/artist-profile";
 
 export default function MainApp() {
   const { user, userData, login, logout, isArtist } = useAuth();

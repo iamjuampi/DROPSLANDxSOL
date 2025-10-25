@@ -1,16 +1,28 @@
-import type { ReactNode } from "react"
-import { ArrowDown, ArrowUp } from "lucide-react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import type { ReactNode } from "react";
+import { ArrowDown, ArrowUp } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 interface StatsCardProps {
-  icon: ReactNode
-  title: string
-  value: string
-  trend: string
-  trendUp: boolean
+  icon: ReactNode;
+  title: string;
+  value: string;
+  trend: string;
+  trendUp: boolean;
 }
 
-export default function StatsCard({ icon, title, value, trend, trendUp }: StatsCardProps) {
+export default function StatsCard({
+  icon,
+  title,
+  value,
+  trend,
+  trendUp,
+}: StatsCardProps) {
   return (
     <Card>
       <CardHeader className="flex flex-row items-center justify-between pb-2">
@@ -35,6 +47,5 @@ export default function StatsCard({ icon, title, value, trend, trendUp }: StatsC
         </CardDescription>
       </CardContent>
     </Card>
-  )
+  );
 }
-

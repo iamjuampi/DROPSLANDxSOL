@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import { useMusicPlayer } from "@/hooks/use-music-player"
-import MiniPlayer from "./mini-player"
+import { useMusicPlayer } from "@/hooks/use-music-player";
+import MiniPlayer from "./mini-player";
 
 export default function MiniPlayerWrapper() {
-  const musicPlayer = useMusicPlayer()
+  const musicPlayer = useMusicPlayer();
 
   if (!musicPlayer.showMiniPlayer || !musicPlayer.currentTrack) {
-    return null
+    return null;
   }
 
   return (
@@ -22,8 +22,8 @@ export default function MiniPlayerWrapper() {
       onSeek={musicPlayer.seek}
       onExpand={musicPlayer.expandPlayer}
       onStop={() => {
-        musicPlayer.hideMiniPlayer()
+        musicPlayer.hideMiniPlayer();
       }}
     />
-  )
-} 
+  );
+}

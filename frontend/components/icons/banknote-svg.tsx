@@ -1,5 +1,5 @@
 interface BanknoteSvgProps {
-  className?: string
+  className?: string;
 }
 
 export function BanknoteSvg({ className = "" }: BanknoteSvgProps) {
@@ -24,6 +24,5 @@ export function BanknoteSvg({ className = "" }: BanknoteSvgProps) {
         />
       </g>
     </svg>
-  )
+  );
 }
-

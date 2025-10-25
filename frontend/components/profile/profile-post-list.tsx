@@ -2,7 +2,7 @@ import { userPosts } from "@/data/profile-view";
 import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
 import { Heart, MessageCircle, Share2 } from "lucide-react";
 import { Card, CardContent } from "../ui/card";
-import { Post } from "@/types/artist";
+import { Post } from "@/types";
 
 interface PostListProps {
   userDisplayName: string;

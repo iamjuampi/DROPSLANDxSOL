@@ -1,20 +1,17 @@
 "use client";
-
 import { useState, useMemo } from "react";
 import { Edit } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-
-// Import the useAuth hook and UserProfile component
 import { useAuth } from "@/hooks/use-auth";
-import UserProfile from "@/components/artist-profile/user-profile";
+import UserProfile from "@/components/profile/user-profile";
 import { useMusicPlayer } from "@/hooks/use-music-player";
-import { musicTracks } from "@/lib/music-data";
 import { LegacyProfileInfo } from "./legacy-profile-info";
 import { LegacyProfileSettings } from "./legacy-profile-settings";
 import { ProfileCommentDialog } from "./profile-comment-dialog";
 import { ProfileTabs } from "./profile-tabs";
+import { musicTracks } from "@/data";
 
 // --- Type Definitions ---
 // (Ideally, these would be imported from your data files)

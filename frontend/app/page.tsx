@@ -1,5 +1,6 @@
 "use client";
-import MainApp from "@/components/main-app";
+
+import MainApp from "@/components/layout/main-app";
 
 export default function MainPage() {
   return (

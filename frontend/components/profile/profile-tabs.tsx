@@ -1,5 +1,4 @@
-import { Track } from "@/lib/music-data";
-import { UserData } from "@/lib/types";
+import { UserData } from "@/types";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@radix-ui/react-tabs";
 import { PostInteractionState } from "./profile-view";
 import { CreatePostForm } from "./profile-create-post-form";
@@ -11,7 +10,7 @@ import {
   followedArtists,
   rewards,
 } from "@/data/profile-view";
-import { Certification } from "@/types/artist";
+import { Certification } from "@/types";
 import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
 import {
   Disc,
@@ -24,7 +23,8 @@ import {
 } from "lucide-react";
 import { Card, CardContent } from "../ui/card";
 import { Badge } from "../ui/badge";
-import { MusicPlayer } from "@/types/music-player";
+import { MusicPlayer } from "@/types";
+import { Track } from "@/types";
 
 interface ProfileTabsProps {
   isArtist: boolean;

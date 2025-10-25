@@ -1,6 +1,6 @@
 /**
  * Cliente para interactuar con programas de Solana desde el frontend
- * 
+ *
  * Flujo:
  * 1. Usuario conecta wallet (ya tienes SolanaWalletButton)
  * 2. Frontend llama funciones de este cliente
@@ -9,12 +9,20 @@
  * 5. Transacción se envía a blockchain
  */
 
-import { Connection, PublicKey, Transaction, SystemProgram, LAMPORTS_PER_SOL } from '@solana/web3.js';
-import { AnchorProvider, Program, Idl } from '@coral-xyz/anchor';
-import { useAnchorWallet, useConnection } from '@solana/wallet-adapter-react';
+import {
+  Connection,
+  PublicKey,
+  Transaction,
+  SystemProgram,
+  LAMPORTS_PER_SOL,
+} from "@solana/web3.js";
+import { AnchorProvider, Program, Idl } from "@coral-xyz/anchor";
+import { useAnchorWallet, useConnection } from "@solana/wallet-adapter-react";
 
 // El Program ID de tu programa (se genera cuando haces anchor deploy)
-export const DROPSLAND_PROGRAM_ID = new PublicKey('2EpreJPoJC6wEHk3hShxffGyPbmEaNLyDMKQmbSsTWXH');
+export const DROPSLAND_PROGRAM_ID = new PublicKey(
+  "2EpreJPoJC6wEHk3hShxffGyPbmEaNLyDMKQmbSsTWXH",
+);
 
 /**
  * Hook personalizado para interactuar con tu programa Solana
@@ -28,17 +36,15 @@ export function useSolanaProgram() {
   }
 
   // Crear provider de Anchor
-  const provider = new AnchorProvider(
-    connection,
-    wallet,
-    { commitment: 'confirmed' }
-  );
+  const provider = new AnchorProvider(connection, wallet, {
+    commitment: "confirmed",
+  });
 
   return {
     connection,
     wallet,
     provider,
-    programId: DROPSLAND_PROGRAM_ID
+    programId: DROPSLAND_PROGRAM_ID,
   };
 }
 
@@ -47,7 +53,7 @@ export function useSolanaProgram() {
  */
 export async function initializeProgram(
   program: Program,
-  wallet: PublicKey
+  wallet: PublicKey,
 ): Promise<string> {
   try {
     const tx = await program.methods
@@ -78,17 +84,17 @@ export async function mintTicket(
     buyerName: string;
     exhibitionName: string;
     ticketNumber: number;
-  }
+  },
 ): Promise<string> {
   try {
     // Generar PDA (Program Derived Address) para el NFT
     const [ticketPda] = PublicKey.findProgramAddressSync(
       [
-        Buffer.from('ticket'),
+        Buffer.from("ticket"),
         wallet.toBuffer(),
-        Buffer.from(ticketData.ticketNumber.toString())
+        Buffer.from(ticketData.ticketNumber.toString()),
       ],
-      program.programId
+      program.programId,
     );
 
     const tx = await program.methods
@@ -96,7 +102,7 @@ export async function mintTicket(
         ticketData.name,
         ticketData.buyerName,
         ticketData.exhibitionName,
-        ticketData.ticketNumber
+        ticketData.ticketNumber,
       )
       .accounts({
         ticket: ticketPda,
@@ -116,10 +122,7 @@ export async function mintTicket(
 /**
  * Obtener datos de un ticket
  */
-export async function getTicketData(
-  program: Program,
-  ticketPda: PublicKey
-) {
+export async function getTicketData(program: Program, ticketPda: PublicKey) {
   try {
     const ticketAccount = await program.account.ticket.fetch(ticketPda);
     return ticketAccount;
@@ -134,10 +137,8 @@ export async function getTicketData(
  */
 export async function getSolBalance(
   connection: Connection,
-  publicKey: PublicKey
+  publicKey: PublicKey,
 ): Promise<number> {
   const balance = await connection.getBalance(publicKey);
   return balance / LAMPORTS_PER_SOL;
 }
-
-

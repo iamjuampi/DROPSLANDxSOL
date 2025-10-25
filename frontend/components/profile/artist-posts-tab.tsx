@@ -1,4 +1,4 @@
-import { Artist } from "@/types/artist";
+import { Artist } from "@/types";
 import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
 import { Heart, MessageCircle, Share2 } from "lucide-react";
 import { Card, CardContent } from "../ui/card";

@@ -1,6 +1,6 @@
 interface BanknoteIconProps {
-  className?: string
-  size?: number
+  className?: string;
+  size?: number;
 }
 
 export function BanknoteIcon({ className = "", size = 24 }: BanknoteIconProps) {
@@ -29,6 +29,5 @@ export function BanknoteIcon({ className = "", size = 24 }: BanknoteIconProps) {
         />
       </g>
     </svg>
-  )
+  );
 }
-

@@ -1,4 +1,4 @@
-import { UserData } from "@/lib/types";
+import { UserData } from "@/types";
 import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
 import { ImageIcon, MapPin, BarChart2, Paperclip, Hash } from "lucide-react";
 import { useState } from "react";

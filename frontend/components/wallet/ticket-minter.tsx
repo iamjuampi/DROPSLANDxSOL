@@ -1,71 +1,77 @@
-'use client'
+"use client";
 
 /**
  * Componente ejemplo para mintear tickets usando Solana
  * Este componente muestra cómo conectar tu frontend con el programa Solana
  */
 
-import { useState } from 'react'
-import { useWallet } from '@solana/wallet-adapter-react'
-import { useConnection } from '@solana/wallet-adapter-react'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { useToast } from '@/hooks/use-toast'
+import { useState } from "react";
+import { useWallet } from "@solana/wallet-adapter-react";
+import { useConnection } from "@solana/wallet-adapter-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { useToast } from "@/hooks/use-toast";
 
 export function TicketMinter() {
-  const { publicKey, connected } = useWallet()
-  const { connection } = useConnection()
-  const { toast } = useToast()
+  const { publicKey, connected } = useWallet();
+  const { connection } = useConnection();
+  const { toast } = useToast();
 
   const [ticketData, setTicketData] = useState({
-    buyerName: '',
-    exhibitionName: '',
+    buyerName: "",
+    exhibitionName: "",
     ticketNumber: 1,
-  })
-  const [minting, setMinting] = useState(false)
+  });
+  const [minting, setMinting] = useState(false);
 
   const handleMintTicket = async () => {
     if (!connected || !publicKey) {
       toast({
         title: "Wallet not connected",
         description: "Please connect your Solana wallet first",
-        variant: "destructive"
-      })
-      return
+        variant: "destructive",
+      });
+      return;
     }
 
-    setMinting(true)
+    setMinting(true);
 
     try {
       // Aquí llamarías a tu función del programa Solana
       // const tx = await mintTicket(program, publicKey, ticketData)
-      
+
       // Por ahora, simulamos la transacción
-      await new Promise(resolve => setTimeout(resolve, 2000))
-      
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
       toast({
         title: "Ticket Minted! 🎫",
         description: `Ticket #${ticketData.ticketNumber} for ${ticketData.buyerName}`,
-      })
+      });
 
       // Resetear form
       setTicketData({
-        buyerName: '',
-        exhibitionName: '',
+        buyerName: "",
+        exhibitionName: "",
         ticketNumber: ticketData.ticketNumber + 1,
-      })
+      });
     } catch (error) {
-      console.error("Error minting ticket:", error)
+      console.error("Error minting ticket:", error);
       toast({
         title: "Error",
         description: "Failed to mint ticket. Please try again.",
-        variant: "destructive"
-      })
+        variant: "destructive",
+      });
     } finally {
-      setMinting(false)
+      setMinting(false);
     }
-  }
+  };
 
   return (
     <Card className="w-full max-w-md mx-auto">
@@ -89,7 +95,9 @@ export function TicketMinter() {
               <Input
                 placeholder="Adam"
                 value={ticketData.buyerName}
-                onChange={(e) => setTicketData({...ticketData, buyerName: e.target.value})}
+                onChange={(e) =>
+                  setTicketData({ ...ticketData, buyerName: e.target.value })
+                }
               />
             </div>
 
@@ -98,7 +106,12 @@ export function TicketMinter() {
               <Input
                 placeholder="My Exhibition 2025"
                 value={ticketData.exhibitionName}
-                onChange={(e) => setTicketData({...ticketData, exhibitionName: e.target.value})}
+                onChange={(e) =>
+                  setTicketData({
+                    ...ticketData,
+                    exhibitionName: e.target.value,
+                  })
+                }
               />
             </div>
 
@@ -107,16 +120,23 @@ export function TicketMinter() {
               <Input
                 type="number"
                 value={ticketData.ticketNumber}
-                onChange={(e) => setTicketData({...ticketData, ticketNumber: parseInt(e.target.value)})}
+                onChange={(e) =>
+                  setTicketData({
+                    ...ticketData,
+                    ticketNumber: parseInt(e.target.value),
+                  })
+                }
               />
             </div>
 
-            <Button 
+            <Button
               onClick={handleMintTicket}
-              disabled={minting || !ticketData.buyerName || !ticketData.exhibitionName}
+              disabled={
+                minting || !ticketData.buyerName || !ticketData.exhibitionName
+              }
               className="w-full"
             >
-              {minting ? 'Minting...' : 'Mint Ticket NFT'}
+              {minting ? "Minting..." : "Mint Ticket NFT"}
             </Button>
 
             {publicKey && (
@@ -133,7 +153,5 @@ export function TicketMinter() {
         )}
       </CardContent>
     </Card>
-  )
+  );
 }
-
-

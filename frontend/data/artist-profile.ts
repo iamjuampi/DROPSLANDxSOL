@@ -1,7 +1,7 @@
 // Vamos a actualizar los datos de los artistas para que cada uno tenga contenido único
 // Reemplazaremos la constante artists con datos más personalizados
 
-import { Artist } from "@/types/artist";
+import { Artist } from "@/types";
 
 export const artists: Artist[] = [
   {

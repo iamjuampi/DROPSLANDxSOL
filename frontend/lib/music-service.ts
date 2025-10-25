@@ -1,6 +1,7 @@
-import { musicTracks } from "./music-data"; // Import mock data
-
 // Define interfaces based on original service expectations, mapping from Track
+
+import { musicTracks } from "@/data";
+
 // Note: We might need to adjust or add dummy data for fields not in the original Track interface.
 export interface MusicFile {
   id: string;

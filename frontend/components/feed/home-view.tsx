@@ -28,7 +28,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BanknoteIcon } from "@/components/icons/banknote-icon";
 import { useAuth } from "@/hooks/use-auth";
 import { userDataService } from "@/lib/user-data-service";
-import { Post, Activity, FeedItem } from "@/lib/types";
+import { ExtendedPost, Activity, FeedItem } from "@/types";
 import MusicPlayer from "@/components/music-player/music-player";
 
 interface HomeViewProps {
@@ -252,7 +252,7 @@ export default function HomeView({
 
   const renderFeedItem = (item: FeedItem) => {
     if (item.type === "post") {
-      const post = item.data as Post;
+      const post = item.data as ExtendedPost;
       const isLiked = user ? post.likes.includes(user) : false;
 
       return (

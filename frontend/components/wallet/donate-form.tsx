@@ -1,42 +1,57 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Info } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Slider } from "@/components/ui/slider"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import { donateToCreator } from "@/lib/blockchain"
-import { BanknoteIcon } from "@/components/icons/banknote-icon"
+import { useState } from "react";
+import { Info } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Slider } from "@/components/ui/slider";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { donateToCreator } from "@/lib/blockchain";
+import { BanknoteIcon } from "@/components/icons/banknote-icon";
 
 interface DonateFormProps {
-  creatorId: string
-  creatorName: string
+  creatorId: string;
+  creatorName: string;
 }
 
-export default function DonateForm({ creatorId, creatorName }: DonateFormProps) {
-  const [amount, setAmount] = useState(5)
-  const [message, setMessage] = useState("")
-  const [isAnonymous, setIsAnonymous] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
+export default function DonateForm({
+  creatorId,
+  creatorName,
+}: DonateFormProps) {
+  const [amount, setAmount] = useState(5);
+  const [message, setMessage] = useState("");
+  const [isAnonymous, setIsAnonymous] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handlePurchase = async () => {
-    setIsLoading(true)
+    setIsLoading(true);
     try {
       // In a real app, this would call the actual blockchain function
-      await donateToCreator(creatorId, amount, message, isAnonymous)
-      alert(`Successfully purchased ${amount} $DROPS from ${creatorName}!`)
-      setAmount(5)
-      setMessage("")
+      await donateToCreator(creatorId, amount, message, isAnonymous);
+      alert(`Successfully purchased ${amount} $DROPS from ${creatorName}!`);
+      setAmount(5);
+      setMessage("");
     } catch (error) {
-      console.error("Purchase failed:", error)
-      alert("Purchase failed. Please try again.")
+      console.error("Purchase failed:", error);
+      alert("Purchase failed. Please try again.");
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   return (
     <Card>
@@ -45,7 +60,9 @@ export default function DonateForm({ creatorId, creatorName }: DonateFormProps) 
           <BanknoteIcon className="mr-2 h-5 w-5 text-primary" />
           Buy $DROPS
         </CardTitle>
-        <CardDescription>Support {creatorName} with music tokens</CardDescription>
+        <CardDescription>
+          Support {creatorName} with music tokens
+        </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-2">
@@ -98,7 +115,8 @@ export default function DonateForm({ creatorId, creatorName }: DonateFormProps) 
               </TooltipTrigger>
               <TooltipContent>
                 <p className="max-w-xs text-xs">
-                  Your purchase will be recorded on the blockchain, but your identity won't be shown publicly.
+                  Your purchase will be recorded on the blockchain, but your
+                  identity won't be shown publicly.
                 </p>
               </TooltipContent>
             </Tooltip>
@@ -106,11 +124,14 @@ export default function DonateForm({ creatorId, creatorName }: DonateFormProps) 
         </div>
       </CardContent>
       <CardFooter>
-        <Button className="w-full" onClick={handlePurchase} disabled={isLoading}>
+        <Button
+          className="w-full"
+          onClick={handlePurchase}
+          disabled={isLoading}
+        >
           {isLoading ? "Processing..." : `Buy ${amount} $DROPS`}
         </Button>
       </CardFooter>
     </Card>
-  )
+  );
 }
-

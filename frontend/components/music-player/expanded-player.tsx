@@ -1,67 +1,65 @@
-"use client"
-
-import { useState } from "react"
-import { 
-  Play, 
-  Pause, 
-  SkipBack, 
-  SkipForward, 
-  Volume2, 
+"use client";
+import { useState } from "react";
+import {
+  Play,
+  Pause,
+  SkipBack,
+  SkipForward,
+  Volume2,
   VolumeX,
   Repeat,
   Shuffle,
   Heart,
-  MoreHorizontal,
   List,
   Minimize2,
-  X
-} from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Slider } from "@/components/ui/slider"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { useMusicPlayer } from "@/hooks/use-music-player"
-import { musicTracks } from "@/lib/music-data"
+  X,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Slider } from "@/components/ui/slider";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useMusicPlayer } from "@/hooks/use-music-player";
+import { musicTracks } from "@/data";
 
 export default function ExpandedPlayer() {
-  const [isShuffled, setIsShuffled] = useState(false)
-  const [isRepeated, setIsRepeated] = useState(false)
-  const [showPlaylist, setShowPlaylist] = useState(true) // Show queue by default
-  const [likedTracks, setLikedTracks] = useState<Set<string>>(new Set())
+  const [isShuffled, setIsShuffled] = useState(false);
+  const [isRepeated, setIsRepeated] = useState(false);
+  const [showPlaylist, setShowPlaylist] = useState(true); // Show queue by default
+  const [likedTracks, setLikedTracks] = useState<Set<string>>(new Set());
 
-  const musicPlayer = useMusicPlayer()
+  const musicPlayer = useMusicPlayer();
 
   if (!musicPlayer.isExpanded || !musicPlayer.currentTrack) {
-    return null
+    return null;
   }
 
   // Handle seek
   const handleSeek = (value: number[]) => {
-    const newTime = value[0]
-    musicPlayer.seek(newTime)
-  }
+    const newTime = value[0];
+    musicPlayer.seek(newTime);
+  };
 
   // Handle volume change
   const handleVolumeChange = (value: number[]) => {
-    const newVolume = value[0]
-    musicPlayer.setVolumeLevel(newVolume)
-  }
+    const newVolume = value[0];
+    musicPlayer.setVolumeLevel(newVolume);
+  };
 
   // Handle like toggle
   const toggleLike = () => {
-    const newLikedTracks = new Set(likedTracks)
+    const newLikedTracks = new Set(likedTracks);
     if (newLikedTracks.has(musicPlayer.currentTrack!.id)) {
-      newLikedTracks.delete(musicPlayer.currentTrack!.id)
+      newLikedTracks.delete(musicPlayer.currentTrack!.id);
     } else {
-      newLikedTracks.add(musicPlayer.currentTrack!.id)
+      newLikedTracks.add(musicPlayer.currentTrack!.id);
     }
-    setLikedTracks(newLikedTracks)
-  }
+    setLikedTracks(newLikedTracks);
+  };
 
   // Handle playlist track selection
   const playTrackFromPlaylist = (track: any, index: number) => {
-    musicPlayer.playTrack(track)
-  }
+    musicPlayer.playTrack(track);
+  };
 
   return (
     <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4">
@@ -104,12 +102,14 @@ export default function ExpandedPlayer() {
             <div className="flex justify-center mb-6">
               <div className="relative">
                 <Avatar className="h-32 w-32">
-                  <AvatarImage 
-                    src={musicPlayer.currentTrack.cover} 
+                  <AvatarImage
+                    src={musicPlayer.currentTrack.cover}
                     alt={`${musicPlayer.currentTrack.album} cover`}
                   />
                   <AvatarFallback className="bg-gray-700 text-white text-lg">
-                    {musicPlayer.currentTrack.artist.substring(0, 2).toUpperCase()}
+                    {musicPlayer.currentTrack.artist
+                      .substring(0, 2)
+                      .toUpperCase()}
                   </AvatarFallback>
                 </Avatar>
                 {musicPlayer.isPlaying && (
@@ -126,9 +126,10 @@ export default function ExpandedPlayer() {
                 {musicPlayer.currentTrack.title}
               </h3>
               <p className="text-gray-400 text-sm mb-2">
-                {musicPlayer.currentTrack.artist} • {musicPlayer.currentTrack.album}
+                {musicPlayer.currentTrack.artist} •{" "}
+                {musicPlayer.currentTrack.album}
               </p>
-              
+
               {/* Progress Bar */}
               <div className="mb-4">
                 <Slider
@@ -151,11 +152,11 @@ export default function ExpandedPlayer() {
                 variant="ghost"
                 size="sm"
                 onClick={() => setIsShuffled(!isShuffled)}
-                className={`text-gray-400 hover:text-white ${isShuffled ? 'text-teal-400' : ''}`}
+                className={`text-gray-400 hover:text-white ${isShuffled ? "text-teal-400" : ""}`}
               >
                 <Shuffle className="h-4 w-4" />
               </Button>
-              
+
               <Button
                 variant="ghost"
                 size="sm"
@@ -164,14 +165,18 @@ export default function ExpandedPlayer() {
               >
                 <SkipBack className="h-5 w-5" />
               </Button>
-              
+
               <Button
                 onClick={musicPlayer.togglePlay}
                 className="bg-teal-600 hover:bg-teal-700 text-white rounded-full h-12 w-12 p-0"
               >
-                {musicPlayer.isPlaying ? <Pause className="h-6 w-6" /> : <Play className="h-6 w-6" />}
+                {musicPlayer.isPlaying ? (
+                  <Pause className="h-6 w-6" />
+                ) : (
+                  <Play className="h-6 w-6" />
+                )}
               </Button>
-              
+
               <Button
                 variant="ghost"
                 size="sm"
@@ -180,12 +185,12 @@ export default function ExpandedPlayer() {
               >
                 <SkipForward className="h-5 w-5" />
               </Button>
-              
+
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={() => setIsRepeated(!isRepeated)}
-                className={`text-gray-400 hover:text-white ${isRepeated ? 'text-teal-400' : ''}`}
+                className={`text-gray-400 hover:text-white ${isRepeated ? "text-teal-400" : ""}`}
               >
                 <Repeat className="h-4 w-4" />
               </Button>
@@ -198,12 +203,14 @@ export default function ExpandedPlayer() {
                   variant="ghost"
                   size="sm"
                   onClick={toggleLike}
-                  className={`text-gray-400 hover:text-white ${likedTracks.has(musicPlayer.currentTrack.id) ? 'text-red-500' : ''}`}
+                  className={`text-gray-400 hover:text-white ${likedTracks.has(musicPlayer.currentTrack.id) ? "text-red-500" : ""}`}
                 >
-                  <Heart className={`h-4 w-4 ${likedTracks.has(musicPlayer.currentTrack.id) ? 'fill-current' : ''}`} />
+                  <Heart
+                    className={`h-4 w-4 ${likedTracks.has(musicPlayer.currentTrack.id) ? "fill-current" : ""}`}
+                  />
                 </Button>
               </div>
-              
+
               <div className="flex items-center gap-2">
                 <Button
                   variant="ghost"
@@ -211,9 +218,13 @@ export default function ExpandedPlayer() {
                   onClick={musicPlayer.toggleMute}
                   className="text-gray-400 hover:text-white"
                 >
-                  {musicPlayer.isMuted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
+                  {musicPlayer.isMuted ? (
+                    <VolumeX className="h-4 w-4" />
+                  ) : (
+                    <Volume2 className="h-4 w-4" />
+                  )}
                 </Button>
-                
+
                 <div className="w-20">
                   <Slider
                     value={[musicPlayer.isMuted ? 0 : musicPlayer.volume]}
@@ -236,9 +247,9 @@ export default function ExpandedPlayer() {
                 <div
                   key={track.id}
                   className={`flex items-center gap-3 p-2 rounded cursor-pointer transition-colors ${
-                    index === musicPlayer.currentTrackIndex 
-                      ? 'bg-teal-600/20 border border-teal-500/30' 
-                      : 'hover:bg-gray-700'
+                    index === musicPlayer.currentTrackIndex
+                      ? "bg-teal-600/20 border border-teal-500/30"
+                      : "hover:bg-gray-700"
                   }`}
                   onClick={() => playTrackFromPlaylist(track, index)}
                 >
@@ -249,9 +260,13 @@ export default function ExpandedPlayer() {
                     </AvatarFallback>
                   </Avatar>
                   <div className="flex-1 min-w-0">
-                    <p className={`text-sm font-medium truncate ${
-                      index === musicPlayer.currentTrackIndex ? 'text-teal-400' : 'text-white'
-                    }`}>
+                    <p
+                      className={`text-sm font-medium truncate ${
+                        index === musicPlayer.currentTrackIndex
+                          ? "text-teal-400"
+                          : "text-white"
+                      }`}
+                    >
                       {track.title}
                     </p>
                     <p className="text-xs text-gray-400 truncate">
@@ -269,8 +284,8 @@ export default function ExpandedPlayer() {
                       variant="ghost"
                       size="sm"
                       onClick={(e) => {
-                        e.stopPropagation()
-                        musicPlayer.playTrack(track)
+                        e.stopPropagation();
+                        musicPlayer.playTrack(track);
                       }}
                       className="text-gray-400 hover:text-white p-1"
                     >
@@ -284,5 +299,5 @@ export default function ExpandedPlayer() {
         </Card>
       </div>
     </div>
-  )
-} 
+  );
+}

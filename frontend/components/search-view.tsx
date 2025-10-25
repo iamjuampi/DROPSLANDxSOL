@@ -8,7 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { BanknoteIcon } from "@/components/icons/banknote-icon";
-import { artists, genres, trendingTopics } from "@/data/search-view";
+import { viewArtists, viewGenres, trendingTopics } from "@/data";
 
 interface SearchViewProps {
   onSelectArtist: (artistId: string) => void;
@@ -23,7 +23,7 @@ export default function SearchView({ onSelectArtist }: SearchViewProps) {
     onSelectArtist(artistId);
   };
 
-  const filteredArtists = artists.filter(
+  const filteredArtists = viewArtists.filter(
     (artist) =>
       artist.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       artist.handle.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -48,7 +48,7 @@ export default function SearchView({ onSelectArtist }: SearchViewProps) {
             Popular Genres
           </h2>
           <div className="grid grid-cols-2 gap-2 mb-6">
-            {genres.map((genre) => (
+            {viewGenres.map((genre) => (
               <Card
                 key={genre.name}
                 className="overflow-hidden bg-gray-800 border-gray-700"

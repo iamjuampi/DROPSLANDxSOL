@@ -1,4 +1,4 @@
-import { Artist } from "@/types/artist";
+import { Artist } from "@/types";
 import { Disc, Video, Users, Award } from "lucide-react";
 import { Card, CardContent } from "../ui/card";
 import { TabsContent } from "../ui/tabs";

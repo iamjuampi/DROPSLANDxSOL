@@ -5,7 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { useAuth } from "@/hooks/use-auth";
 import { userDataService } from "@/lib/user-data-service";
-import { Activity } from "@/lib/types";
+import { Activity } from "@/types";
 import { BanknoteIcon } from "@/components/icons/banknote-icon";
 
 interface ActivityViewProps {

@@ -1,5 +1,5 @@
 // Electronic music genre data
-export const genres = [
+export const viewGenres = [
   { name: "House", count: 245, image: "/categories/house.jpg" },
   { name: "Techno", count: 189, image: "/categories/techno.jpg" },
   { name: "Trance", count: 156, image: "/categories/trance.jpg" },
@@ -9,7 +9,7 @@ export const genres = [
 ];
 
 // Real artists
-export const artists = [
+export const viewArtists = [
   {
     id: "iamjuampi",
     name: "iamjuampi",

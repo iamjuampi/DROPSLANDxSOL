@@ -9,7 +9,7 @@ import {
   useCallback,
 } from "react";
 import { backendService } from "@/lib/backend-service"; // Keep using the mock backend
-import { UserData } from "@/lib/types";
+import { UserData } from "@/types";
 
 // --- Mock User Data ---
 const mockArtistData: UserData = {

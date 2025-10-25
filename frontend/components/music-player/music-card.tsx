@@ -5,17 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useMusicPlayer } from "@/hooks/use-music-player";
-
-interface Track {
-  id: string;
-  title: string;
-  artist: string;
-  album: string;
-  duration: number;
-  cover: string;
-  audioUrl?: string;
-  isLiked?: boolean;
-}
+import { Track } from "@/types";
 
 interface MusicCardProps {
   track: Track;
