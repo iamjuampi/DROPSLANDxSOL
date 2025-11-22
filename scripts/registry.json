@@ -1,0 +1,26 @@
+[
+  {
+    "name": "DJ Khaled 1",
+    "symbol": "Khaled 1",
+    "mint": "4wv4sfpTxJbNJn5jJG7tc7LSCv6MNyBzs7BHwxwXSaTp",
+    "uri": "https://dropsland.com/djkhaled.json",
+    "decimals": 7,
+    "createdAt": "2025-10-25T21:54:02.561Z"
+  },
+  {
+    "name": "DJ Tiësto 1",
+    "symbol": "Tiesto 1",
+    "mint": "4CNFmyyZKzJKDAG6BSXRgg7Qu3DYq1UZavw4yzht34S4",
+    "uri": "https://dropsland.com/djtiesto.json",
+    "decimals": 6,
+    "createdAt": "2025-10-25T21:54:16.197Z"
+  },
+  {
+    "name": "DJ Calvin Harris 1",
+    "symbol": "Calvin 1",
+    "mint": "6sRC2fimaaynSE3CxKQMwUiPP6GARwzB89SntUzhLQHA",
+    "uri": "https://dropsland.com/djcalvinharris.json",
+    "decimals": 6,
+    "createdAt": "2025-10-25T21:54:17.514Z"
+  }
+]
